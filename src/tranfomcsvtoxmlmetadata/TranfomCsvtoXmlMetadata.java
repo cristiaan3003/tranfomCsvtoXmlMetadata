@@ -11,6 +11,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 /**
  *
  * @author cvizzarri
@@ -53,14 +58,24 @@ public class TranfomCsvtoXmlMetadata {
                         System.out.println("Failed to create directory!");
                     }
                 }
-      file = new File("/home/cvizzarri/Descargas/XIXEncuentrodeJovenesInvestigadores/DirectorioItems/item"+contador+"/doublin_core.xml");
-               
+      file = new File("/home/cvizzarri/Descargas/XIXEncuentrodeJovenesInvestigadores/DirectorioItems/item"+contador+"/dublin_core.xml");               
       FileWriter writer = new FileWriter(file); 
       // Writes the content to the file
-      writer.write("<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>\n<dublin_core schema=\"dc\">\n<dcvalue element=\"title\" qualifier=\"none\">"+country[1] +"</dcvalue>\n<dcvalue element=\"date\" qualifier=\"issued\">25-11-2015</dcvalue>\n<dcvalue element=\"creator\" qualifier=\"none\">"+country[4]+","+country[5] +"</dcvalue>\n</dublin_core>");
-      
+      writer.write("<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>\n<dublin_core schema=\"dc\">\n<dcvalue element=\"title\" qualifier=\"none\">"+country[1] +"</dcvalue>\n<dcvalue element=\"date\" qualifier=\"issued\">25-11-2015</dcvalue>\n<dcvalue element=\"creator\" qualifier=\"none\">"+country[4]+","+country[5] +"</dcvalue>\n</dublin_core>");      
       writer.flush();
       writer.close();
+      
+      
+      file = new File("/home/cvizzarri/Descargas/XIXEncuentrodeJovenesInvestigadores/DirectorioItems/item"+contador+"/contents");               
+      writer = new FileWriter(file); 
+      // Writes the content to the file
+      writer.write(country[0]+".pdf\ttbundle:BUNDLE");
+      writer.flush();
+      writer.close();
+      
+      copyFile_Java7("/home/cvizzarri/Descargas/XIXEncuentrodeJovenesInvestigadores/allPDF/"+country[0]+".pdf","/home/cvizzarri/Descargas/XIXEncuentrodeJovenesInvestigadores/DirectorioItems/item"+contador+"/"+country[0]+".pdf");
+      
+      
                 
   
                 
@@ -85,5 +100,17 @@ public class TranfomCsvtoXmlMetadata {
         System.out.println("Done");
     }
     
+  
+        public static void copyFile_Java7(String origen, String destino) throws IOException {
+        Path FROM = Paths.get(origen);
+        Path TO = Paths.get(destino);
+        //sobreescribir el fichero de destino, si existe, y copiar
+        // los atributos, incluyendo los permisos rwx
+        CopyOption[] options = new CopyOption[]{
+          StandardCopyOption.REPLACE_EXISTING,
+          StandardCopyOption.COPY_ATTRIBUTES
+        }; 
+        Files.copy(FROM, TO, options);
+    }
     
 }
