@@ -34,7 +34,7 @@ public class TranfomCsvtoXmlMetadata {
     }
     
     public void run() {
-        String nameFile="diseno.csv";
+        String nameFile="42.ambiental.csv";
         String csvFile = "/home/cvizzarri/Descargas/XIXEncuentrodeJovenesInvestigadores/"+nameFile;
         BufferedReader br = null;
         String line = "";
@@ -62,12 +62,13 @@ public class TranfomCsvtoXmlMetadata {
       FileWriter writer = new FileWriter(file); 
       // Writes the content to the file
       
-      String xml="<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>\n<dublin_core schema=\"dc\">\n<dcvalue element=\"title\" qualifier=\"none\">"+country[1] +"</dcvalue>\n<dcvalue element=\"date\" qualifier=\"issued\">25-11-2015</dcvalue>\n";
+      String xml="<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>\n<dublin_core schema=\"dc\">\n<dcvalue element=\"title\" qualifier=\"none\">"+country[1] +"</dcvalue>\n<dcvalue element=\"date\" qualifier=\"issued\">1-12-2015</dcvalue>\n";
             xml=xml+"<dcvalue element=\"creator\" qualifier=\"none\">"+country[4]+","+country[5] +"</dcvalue>";
-               if (!"".equals(country[6]))
+               
+            if (country.length>6 && !"".equals(country[6]) )
                  xml=xml+"<dcvalue element=\"creator\" qualifier=\"none\">"+country[6]+","+country[7] +"</dcvalue>";
-              if (!"".equals(country[8]))
-                 xml=xml+"<dcvalue element=\"creator\" qualifier=\"none\">"+country[8]+","+country[8] +"</dcvalue>";                 
+              if ( country.length>8 && !"".equals(country[8]))
+                 xml=xml+"<dcvalue element=\"creator\" qualifier=\"none\">"+country[8]+","+country[9] +"</dcvalue>";                 
                
                xml=xml+"\n</dublin_core>";
       writer.write(xml);      
