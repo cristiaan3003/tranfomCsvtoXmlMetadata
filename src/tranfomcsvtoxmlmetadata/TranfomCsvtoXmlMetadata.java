@@ -29,9 +29,11 @@ import java.util.zip.ZipOutputStream;
 public class TranfomCsvtoXmlMetadata {
     //ubicacion de la carpeta()
     List<String> fileList;
-    private static final String NAME="pepito3";
-    private static final String PATCH="/home/cvizzarri/Descargas/XIXEncuentrodeJovenesInvestigadores/2016/EJI_2016/";
+    private static final String NAME="encuentroji";
+    private static final String PATCH="/home/pcourault/Descargas/EncuentroJI/";
     private static final String OUTPUT_ZIP_FILE = PATCH+"zip/"+NAME+".zip";
+
+    // En el directorio /DirectorioItems van los csv con campos separados por "&" y las carpetas con los pdf
     private static final String SOURCE_FOLDER = PATCH+"DirectorioItems";
 
     //fileList= guarda en un listado el nombre de los archivos para armar el zip
@@ -94,7 +96,7 @@ public class TranfomCsvtoXmlMetadata {
       FileWriter writer = new FileWriter(file); 
       // Writes the content to the file
       
-      String xml="<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>\n<dublin_core schema=\"dc\">\n<dcvalue element=\"title\" qualifier=\"none\">"+country[1] +"</dcvalue>\n<dcvalue element=\"date\" qualifier=\"issued\">1-12-2016</dcvalue>\n";
+      String xml="<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>\n<dublin_core schema=\"dc\">\n<dcvalue element=\"title\" qualifier=\"none\">"+country[1] +"</dcvalue>\n<dcvalue element=\"date\" qualifier=\"issued\">23-11-2017</dcvalue>\n";
             xml=xml+"<dcvalue element=\"creator\" qualifier=\"none\">"+country[4]+","+country[5] +"</dcvalue>";
                
             if (country.length>6 && !"".equals(country[6]) )
